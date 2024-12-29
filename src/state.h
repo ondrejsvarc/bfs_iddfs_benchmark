@@ -2,8 +2,8 @@
 // Created by Ondrej Svarc on 27.12.2024.
 //
 
-#ifndef BFS_IDDFS_BENCHMARK_STATE_H
-#define BFS_IDDFS_BENCHMARK_STATE_H
+#ifndef STATE_H
+#define STATE_H
 
 #pragma once
 
@@ -15,31 +15,23 @@ using state_pointer = std::shared_ptr<const state>;
 
 class state {
 private:
-    const unsigned int cost;
     const state_pointer predecessor;
 
 public:
 
-    virtual std::vector<state_pointer> get_descendents() const = 0;
+    [[nodiscard]] virtual std::vector<state_pointer> get_descendents () const = 0;
 
-    virtual bool is_goal() const = 0;
+    [[nodiscard]] virtual bool is_goal () const = 0;
 
-    unsigned int current_cost() const {
-        return cost;
-    }
+    [[nodiscard]] virtual unsigned long long get_identifier () const = 0;
 
-    virtual unsigned long long get_identifier() const = 0;
-
-    state_pointer get_predecessor() const {
+    [[nodiscard]] state_pointer get_predecessor () const {
         return predecessor;
     }
 
-    virtual std::string to_string() const = 0;
+    explicit state ( const state_pointer predecessor ) : predecessor( predecessor ) {}
 
-    state(const state_pointer predecessor, unsigned int cost)
-            : cost(cost), predecessor(predecessor) {}
-
-    virtual ~state() {}
+    virtual ~state() = default;
 };
 
-#endif //BFS_IDDFS_BENCHMARK_STATE_H
+#endif // STATE_H
