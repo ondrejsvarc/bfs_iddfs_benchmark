@@ -10,8 +10,7 @@ state_pointer bfs_solver::solve_seq () {
     std::queue<state_pointer> q;
     q.push( root );
 
-
-    state_pointer result;
+    state_pointer result = nullptr;
 
     while ( !q.empty() ) {
         // Get item from queue
