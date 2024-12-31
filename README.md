@@ -217,3 +217,28 @@ This project uses CMake for building. You will need a C++17 compatible compiler 
   For large problems, it is recommended to use parallel algorithms (-P, --parallel) to leverage multi-core processors.
   Even with parallel algorithms, solving very large instances might still require considerable time and computational resources.
   Be mindful of the problem size and complexity when choosing algorithms and parameters.
+
+
+## Benchmark Results
+
+The following table shows the execution times (in seconds) of the different algorithms on various problem instances. The benchmarks were performed on a Windows 11 system with an **Intel Core i9-13900KF** processor.
+
+| Problem Type | Problem Configuration | BFS (Sequential) | BFS (Parallel) | IDDFS (Sequential) | IDDFS (Parallel) |
+|---|---|---|---|---|---|
+| SAT | 10 variables, 5 clauses, 3 literals/clause, seed 420 | 0.0435 | 0.0176 | 0.0095 | 0.0097 |
+| SAT | 15 variables, 9 clauses, 3 literals/clause, seed 2 | 36.0034 | 0.9032 | 0.4688 | 0.3536 |
+| SAT | 15 variables, 5 clauses, 7 literals/clause, seed 1 | 51.1371 | 0.7979 | 0.4335 | 0.3195 |
+| MAZE | 49x49, seed 6 | 0.0124 | 0.0704 | 7.5354 | 3.9187 |
+| MAZE | 67x25, seed 4 | 0.0021 | 0.0021 | 0.2942 | 0.2066 |
+| HANOI | 3 pegs, 4 discs | 0.0002 | 0.0046 | 0.04741 | 0.0338 |
+| HANOI | 4 pegs, 3 discs | 0.0002 | 0.003 | 0.0019 | 0.0024 |
+| HANOI | 3 pegs, 5 discs | 0.0008 | 0.0081 | 198.57 | 92.1586 |
+
+**Observations:**
+
+* Parallel versions of BFS and IDDFS generally outperform their sequential counterparts, especially on larger problem instances.
+* IDDFS tends to be significantly faster than BFS for the SAT problem, likely due to the depth-limited nature of the search, which helps prune the search space.
+* For the Hanoi Towers problem with 3 pegs and 5 discs, both sequential and parallel IDDFS are much slower, which is likely due to the large search space and the overhead of iterative deepening.
+* The performance of parallel algorithms can vary depending on the specific problem instance and the number of available cores.
+
+**Note:** These results are specific to the hardware and software configuration used for the benchmark. Your results may vary depending on your system.
