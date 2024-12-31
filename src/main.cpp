@@ -1,6 +1,14 @@
-//
-// Created by Ondrej Svarc on 27.12.2024.
-//
+/**
+ * @file main.cpp
+ * @brief Main file for the algorithm benchmarking application.
+ *
+ * This program solves various problems (Maze, SAT, Hanoi) using different search algorithms (BFS, IDDFS)
+ * in both sequential and parallel implementations. It allows users to generate problems with custom parameters,
+ * load problems from JSON files, and benchmark the performance of the algorithms.
+ *
+ * @author Ondrej Svarc
+ * @date Created on 27.12.2024
+*/
 
 #include <iostream>
 #include <string>
@@ -13,6 +21,10 @@
 #include "generators/sat_generator.h"
 #include "generators/hanoi_generator.h"
 
+/**
+ * @brief Global variables to store command-line argument flags.
+ * These flags control the behavior of the program based on user input.
+ */
 bool is_maze = false;
 bool is_sat = false;
 bool is_hanoi = false;
@@ -25,12 +37,59 @@ bool is_iddfs = false;
 bool is_help = false;
 std::string filename;
 
+
+/**
+ * @brief Parses command-line arguments and sets global flags.
+ *
+ * This function iterates through the command-line arguments provided to the program.
+ * It recognizes and sets flags for various options like problem type, algorithm type,
+ * whether to generate a problem, and whether to use parallel or sequential execution.
+ * It also performs checks to ensure that conflicting arguments are not specified together.
+ *
+ * @param argc The number of command-line arguments.
+ * @param argv An array of C-style strings containing the command-line arguments.
+ *
+ * @throws std::runtime_error if conflicting arguments are specified or an unknown argument is encountered.
+ */
 void parse_arguments ( int argc, char *argv[] );
+
+/**
+ * @brief Prints the help message for the program.
+ *
+ * Displays a usage message that lists all available command-line options and their descriptions.
+ */
 void print_help ();
+
+/**
+ * @brief Generates a problem based on user input and optionally saves it to a file.
+ *
+ * Prompts the user to select a problem type (maze, SAT, or Hanoi) and enter the necessary parameters.
+ * It then generates the problem, displays it to the console, and asks the user if they want to save it to a file.
+ *
+ * @throws std::runtime_error if an unknown problem type is selected.
+ */
 void generate_problem ();
+
+/**
+ * @brief Benchmarks the selected algorithms on the specified problem.
+ *
+ * Loads or generates the problem based on the command-line arguments, then runs the selected
+ * algorithms (BFS, IDDFS, sequential, parallel) on the problem. It measures and prints the
+ * execution time of each algorithm.
+ */
 void benchmark_algorithms ();
 
 
+/**
+ * @brief Main function of the program.
+ *
+ * Parses command-line arguments, sets global flags, and calls the appropriate functions
+ * to either generate a problem or benchmark algorithms on a loaded/generated problem.
+ *
+ * @param argc Number of command-line arguments.
+ * @param argv Array of command-line arguments.
+ * @return 0 if the program executes successfully, 1 otherwise.
+ */
 int main ( int argc, char** argv ) {
     try {
         parse_arguments( argc, argv );
