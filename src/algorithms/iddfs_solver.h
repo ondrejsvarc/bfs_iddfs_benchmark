@@ -16,6 +16,7 @@
 #pragma once
 
 #include "solver.h"
+#include <climits>
 #include <unordered_set>
 #include <atomic>
 #include <omp.h>
