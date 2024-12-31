@@ -150,7 +150,7 @@ void parse_arguments ( int argc, char *argv[] ) {
 void print_help () {
     std::cout << "Usage: problem_solver [OPTIONS]\n\n"
                 << "Options:\n"
-                << "  -m, --maze             Solve a maze problem (default: 49x49, seed 1)\n"
+                << "  -m, --maze             Solve a maze problem (default: 69x69, seed 8)\n"
                 << "  -s, --sat              Solve a SAT problem (default: vars 14, clauses 9, literals per clause 4, seed 1)\n"
                 << "  -h, --hanoi            Solve a Hanoi Towers problem (default: pegs 3, discs 4)\n"
                 << "  -f, --file <filename>  Load problem from file\n"
@@ -279,7 +279,7 @@ void benchmark_algorithms () {
         initial_state = problem_loader::load_problem(filename);
     } else {
         if ( is_maze ) {
-            std::shared_ptr<generator> generator = std::make_shared<maze_generator>(49, 49, 1);
+            std::shared_ptr<generator> generator = std::make_shared<maze_generator>(69, 69, 8);
             initial_state = generator->generate();
         } else if ( is_sat ) {
             std::shared_ptr<generator> generator = std::make_shared<sat_generator>(14, 9, 4, 1);
