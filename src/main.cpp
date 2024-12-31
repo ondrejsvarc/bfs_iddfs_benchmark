@@ -229,14 +229,22 @@ void generate_problem () {
             }
 
             std::cout << "SAT Problem (Number of variables: " << problem.num_variables << ", Number of clauses: " << problem.num_clauses << ")" << std::endl;
+            bool first_clause = true;
             for ( const auto &clause : problem.clauses ) {
-                std::cout << "( ";
+                if ( first_clause ) {
+                    std::cout << "(";
+                    first_clause = false;
+                } else std::cout << " & (";
+                bool first_literal = true;
                 for ( const auto &literal : clause.literals ) {
-                    if ( literal.negated ) std::cout << "-";
-                    std::cout << literal.variable_id << " ";
+                    if ( !first_literal ) std::cout << " v ";
+                    if ( literal.negated ) std::cout << "~";
+                    std::cout << literal.variable_id;
+                    first_literal = false;
                 }
-                std::cout << ")" << std::endl;
+                std::cout << ")";
             }
+            std::cout << std::endl;
         }
 
     } else if ( problem_type == "hanoi" ) {
