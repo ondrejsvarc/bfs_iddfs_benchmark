@@ -221,7 +221,7 @@ This project uses CMake for building. You will need a C++17 compatible compiler 
 
 ## Benchmark Results
 
-The following table shows the execution times (in seconds) of the different algorithms on various problem instances. The benchmarks were performed on a Windows 11 system with an **Intel Core i9-13900KF** processor.
+The following table shows the execution times (in seconds) of the different algorithms on various problem instances. The benchmarks were performed on a Windows 11 system with an **Intel Core i9-13900KF** processor on commit '6cac689'.
 
 | Problem Type | Problem Configuration | BFS (Sequential) | BFS (Parallel) | IDDFS (Sequential) | IDDFS (Parallel) |
 |---|---|---|---|---|---|
