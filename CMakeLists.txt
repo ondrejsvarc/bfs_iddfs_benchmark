@@ -15,4 +15,5 @@ set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
 find_package(OpenMP REQUIRED)
 link_libraries(OpenMP::OpenMP_CXX)
 
-add_executable(bfs_iddfs_benchmark "src/main.cpp" "src/algorithms/bfs_solver.cpp" "src/algorithms/iddfs_solver.cpp" "src/generators/maze_generator.cpp" "src/generators/sat_generator.cpp" "src/generators/hanoi_generator.cpp" "src/problem_loader.cpp")
+add_executable(bfs_iddfs_benchmark "src/main.cpp" "src/algorithms/bfs_solver.cpp" "src/algorithms/iddfs_solver.cpp" "src/generators/maze_generator.cpp"
+        "src/generators/sat_generator.cpp" "src/generators/hanoi_generator.cpp" "src/problem_loader.cpp" "src/algorithm_benchmark.cpp")
