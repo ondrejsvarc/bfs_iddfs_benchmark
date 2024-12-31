@@ -47,7 +47,7 @@ bool sat_state::is_goal () const {
         if ( !clause_satisfied ) return false;
     }
 
-    if ( assignment.size() != problem.num_variables ) return false;
+    if ( static_cast<int>(assignment.size()) != problem.num_variables ) return false;
 
     return true;
 }
